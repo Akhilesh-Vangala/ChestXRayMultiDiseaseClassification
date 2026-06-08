@@ -1,0 +1,47 @@
+data:
+  data_path: "data/raw"
+  images_dir: "data/raw/images"
+  image_size: [224, 224]
+
+training:
+  epochs: 50
+  batch_size: 32
+  learning_rate: 0.001
+  use_focal_loss: true
+  use_weighted_sampling: true
+  use_mixed_precision: true
+  use_lookahead: true
+  early_stopping_patience: 10
+  reduce_lr_patience: 5
+
+model:
+  base_model: "ResNet50"
+  num_classes: 14
+  dropout_rate: 0.5
+  use_attention: true
+  use_multi_scale: true
+  use_fpn: true
+  use_se: true
+
+augmentation:
+  use_mixup: true
+  use_cutout: true
+  use_cutmix: true
+  use_randaugment: true
+
+focal_loss:
+  alpha: 0.25
+  gamma: 2.0
+
+evaluation:
+  threshold: 0.5
+  use_tta: false
+  save_predictions: true
+  save_gradcam: true
+
+output:
+  output_dir: "outputs"
+  model_dir: "outputs/models"
+  plot_dir: "outputs/plots"
+  gradcam_dir: "outputs/gradcam"
+  metrics_dir: "outputs/metrics"
